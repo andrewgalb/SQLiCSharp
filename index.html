@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>SQL i C#</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/white.css" id="theme">
+		<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2 class="r-fit-text">SQL i C#</h2>
+				</section>
+				<section>
+					<section>
+						<h2>Hur använder vi en databas ifrån C#?</h2>
+						<p>Först behöver vi berätta var databasen är. </p>
+						<p>Vi gör det med en s.k. connection string.</p>
+						<p>I Visual Studio är det lätt att hitta detta om det handlar om en SQL Express databas.</p>	
+					</section>
+					<section>
+						<img src="assets/connectionStringVS.PNG">
+					</section>
+				</section>
+
+				<section>
+				<section>
+					<h2>Att skapa en connection</h2>
+					<p>Vår connection string används sedan för att skapa en instans av SqlConnection</p>
+					<pre><code>
+						SqlConnection connection = new SqlConnection(connst);
+					</code></pre>
+					<p>Detta kan sedan öppnas och stängas med .Open() och .Close()</p>
+				</section>
+				<section >
+					<div class="v-stack">
+						<h4>Att skapa en connection</h4>
+						<script src="https://gist.github.com/andrewgalb/56818008f5859e55229a018b8fdfa819.js"></script>
+					</div>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h2>SqlCommand</h2>
+					<p>Sedan skapas en SqlCommand utifrån med vår SqlConnection instans samt en string som innehåller vår SQL sats.</p>
+					<p>Observera Using satsen i koden som följer.</p>
+					<p>När det gäller just SELECT används en SqlDataReader i likhet med StreamReader.</p>
+				</section>
+			<section>
+					<h4>Select kommando</h4>
+					<script src="https://gist.github.com/andrewgalb/e341a5924cc57c843add71246ef51c2b.js"></script>
+				</section>
+			</section>
+
+			<section>
+			<section>
+				<h2>Insert, Delete, Update</h2>
+				<p>Vad gäller andra kommandon används metoden ExecuteNonQuery() för att exekvera koden.</p>
+				<p>Observera användning av try/catch sats för att fånga upp problem.</p>
+			
+			</section>
+				<section>
+					<h4>Insert kommando</h4>
+					<script src="https://gist.github.com/andrewgalb/1a10050f0ddd635ac4e0e40e45619584.js"></script>
+				</section>
+			</section>
+	
+			<section>
+				<h4 class="r-fit-text">Slut</h4>	
+			</section>
+
+			</div>
+		</div>
+		<script src="../dist/reveal.js"></script>
+		<script src="../plugin/highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				center: true,
+				hash: true,
+				plugins: [ RevealHighlight ]
+			});
+		</script>
+	</body>
+</html>
