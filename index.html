@@ -73,6 +73,31 @@
 					<script src="https://gist.github.com/andrewgalb/1a10050f0ddd635ac4e0e40e45619584.js"></script>
 				</section>
 			</section>
+
+			<section>
+				<section>
+					<h2>Parametrar i SQL</h2>
+					<p>Från en säkerhets synvinkel anses det vara dålig stil att lägga in parametrar direkt i en SQL sats.</p>
+					<p>Tanken är att variablerna ska ha sanerats först för att förhindra oönskade hacks.</p>
+					<pre ><code class="r-fit-text">
+						SqlCommand command = new SqlCommand("SELECT * FROM Dogs1 WHERE Name LIKE @Name", connection);
+					</code></pre>
+					<p>En @ symbol i kommandon signalerar att det är en parameter som ska läggas till sedan.</p>
+					</section>
+				<section>
+					<h2>Parametrar i SQL</h2>
+					<p>Parametrar läggs till sedan som en SqlParameter.</p>
+					<pre><code class="r-fit-text">
+						SqlCommand command = new SqlCommand("SELECT * FROM Dogs1 WHERE Name LIKE @Name", connection);</code>
+						<code class="r-fit-text">
+						command.Parameters.Add(new SqlParameter("Name", dogName));
+					</code></pre>
+				</section>
+					<section>
+						<h4>Parametrar exempel</h4>
+						<script src="https://gist.github.com/andrewgalb/292e1f649703550eb4f105cdef19830c.js"></script>
+					</section>
+				</section>
 	
 			<section>
 				<h4 class="r-fit-text">Slut</h4>	
